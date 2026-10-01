@@ -1,0 +1,91 @@
+---
+layout: default
+title: Our Team
+---
+
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">People</p>
+  <h2 class="section-title">Our Team</h2>
+  <p class="section-intro">CONNECT Lab is a community of scholars united by curiosity about adolescent development. We welcome students and collaborators at all career stages.</p>
+
+  <!-- PI first -->
+  {% assign pi = site.members | where: "role", "Principal Investigator" | first %}
+  {% if pi %}
+  <div class="team-grid" style="margin-bottom:2rem;">
+    <div class="team-card pi">
+      <div class="team-photo">
+        {% if pi.photo %}
+          <img src="{{ pi.photo | prepend: site.baseurl }}" alt="{{ pi.name }}">
+        {% else %}
+          <span class="team-photo-placeholder">{{ pi.name | split: ' ' | map: 'first' | join: '' | slice: 0 }}{{ pi.name | split: ' ' | last | slice: 0 }}</span>
+        {% endif %}
+      </div>
+      <div class="team-info">
+        <h3>{{ pi.name }}</h3>
+        <div class="team-role">{{ pi.role }} · {{ pi.title }}</div>
+        {% if pi.pronouns %}<p style="font-size:0.78rem;color:var(--taupe);margin-bottom:0.5rem;">{{ pi.pronouns }}</p>{% endif %}
+        <p>{{ pi.bio }}</p>
+        {% if pi.research_interests %}
+        <ul class="research-interests">
+          {% for interest in pi.research_interests %}
+          <li>{{ interest }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="team-links" style="margin-top:0.75rem;">
+          {% if pi.email %}<a href="mailto:{{ pi.email }}">✉ Email</a>{% endif %}
+          {% if pi.google_scholar %}<a href="{{ pi.google_scholar }}" target="_blank">Google Scholar</a>{% endif %}
+          {% if pi.cv %}<a href="{{ pi.cv }}" target="_blank">CV</a>{% endif %}
+          {% if pi.website %}<a href="{{ pi.website }}" target="_blank">Website</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- All other members, sorted by order -->
+  {% assign others = site.members | where_exp: "m", "m.role != 'Principal Investigator'" | sort: "order" %}
+  {% if others.size > 0 %}
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;color:var(--ink);margin-bottom:1.25rem;">Lab Members</h3>
+  <div class="team-grid">
+    {% for member in others %}
+    {% unless member.name contains 'TEMPLATE' %}
+    <div class="team-card">
+      <div class="team-photo">
+        {% if member.photo %}
+          <img src="{{ member.photo | prepend: site.baseurl }}" alt="{{ member.name }}">
+        {% else %}
+          <span class="team-photo-placeholder" style="color:rgba(30,56,71,0.25);font-family:var(--font-serif);font-size:2.5rem;font-weight:700;">
+            {{ member.name | split: ' ' | first | slice: 0 }}{{ member.name | split: ' ' | last | slice: 0 }}
+          </span>
+        {% endif %}
+      </div>
+      <div class="team-info">
+        <h3>{{ member.name }}</h3>
+        <div class="team-role">{{ member.role }}</div>
+        <p>{{ member.bio | truncatewords: 40 }}</p>
+        <div class="team-links">
+          {% if member.email %}<a href="mailto:{{ member.email }}">✉ Email</a>{% endif %}
+          {% if member.google_scholar %}<a href="{{ member.google_scholar }}" target="_blank">Scholar</a>{% endif %}
+          {% if member.cv %}<a href="{{ member.cv }}" target="_blank">CV</a>{% endif %}
+        </div>
+      </div>
+    </div>
+    {% endunless %}
+    {% endfor %}
+
+    <!-- Recruiting card -->
+    <div class="team-card" style="background:var(--ivory);border:1.5px dashed var(--apricot);">
+      <div class="team-photo" style="background:transparent;border-bottom:1px dashed var(--apricot);color:var(--apricot);font-size:2.5rem;">+</div>
+      <div class="team-info">
+        <h3>Your name here?</h3>
+        <div class="team-role">Open Positions</div>
+        <p>We are actively recruiting graduate students and undergraduate research assistants.</p>
+        <br>
+        <a href="{{ site.baseurl }}/contact/" class="btn btn-primary" style="font-size:0.82rem;padding:0.45rem 1rem;">Learn More</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

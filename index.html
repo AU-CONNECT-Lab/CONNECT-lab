@@ -1,0 +1,109 @@
+---
+layout: default
+title: Home
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="section-eyebrow">Auburn University · HDFS</p>
+      <h1>Understanding People.<br><em>Strengthening Connections.</em><br>Supporting Growth.</h1>
+      <p class="hero-lead">
+        Welcome to CONNECT Lab! The <strong>CON</strong>text and <strong>NE</strong>urophysiological
+        <strong>C</strong>orrelates of <strong>T</strong>een <strong>D</strong>evelopment Lab is led by
+        {{ site.lab.pi_name }}, {{ site.lab.pi_title }} at {{ site.lab.university }}.
+      </p>
+      <div class="hero-btns">
+        <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">Our Research</a>
+        <a href="{{ site.baseurl }}/contact/" class="btn btn-outline">Join the Lab</a>
+      </div>
+    </div>
+    <div class="hero-pillars">
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--apricot);">🌍</div>
+        <div>
+          <h3>Context</h3>
+          <p>We examine the environments — from neighborhoods to families — that shape adolescent development and well-being.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--slate); color: white;">🧠</div>
+        <div>
+          <h3>Connection</h3>
+          <p>We explore how social relationships "get under the skin and skull," linking everyday interactions to neurophysiological outcomes.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--sage);">🌱</div>
+        <div>
+          <h3>Growth</h3>
+          <p>We support thriving across the teen years by translating brain-behavior science into evidence-informed guidance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT UPDATES (pulls from _updates, featured: true) -->
+{% assign featured_updates = site.updates | where: "featured", true | sort: "date" | reverse | limit: 3 %}
+{% if featured_updates.size > 0 %}
+<div class="section-alt">
+  <div class="section">
+    <div class="divider"></div>
+    <p class="section-eyebrow">Latest News</p>
+    <h2 class="section-title">Lab Updates</h2>
+    <div class="card-grid">
+      {% for update in featured_updates %}
+      <div class="update-card">
+        <div class="update-header">
+          <span class="update-date">{{ update.date | date: "%B %Y" }}</span>
+          <span class="category-badge">{{ update.category }}</span>
+        </div>
+        <div class="update-body">
+          <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--ink);text-decoration:none;">{{ update.title }}</a></h3>
+          <p>{{ update.content | strip_html | truncatewords: 30 }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p style="margin-top:1.5rem;"><a href="{{ site.baseurl }}/updates/" class="btn btn-outline">All Updates</a></p>
+  </div>
+</div>
+{% endif %}
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">About the Lab</p>
+  <h2 class="section-title">Where brain, behavior,<br>and environment meet</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+    <div>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.25rem;">
+        CONNECT Lab studies how the environments adolescents grow up in — their neighborhoods, families,
+        and everyday relationships — shape the developing brain and body. We use neurophysiological
+        methods, including functional near-infrared spectroscopy (fNIRS), to capture how social experiences
+        translate into biological change during the critical window of adolescence.
+      </p>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.5rem;">
+        Our work sits at the intersection of developmental science, neuroscience, and family studies —
+        asking not just <em>what</em> teens experience, but <em>how</em> those experiences get inside them.
+      </p>
+      <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">Explore Our Research</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div class="card">
+        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">📍 Where We Are</h3>
+        <p style="font-size:0.9rem;color:var(--slate);">{{ site.lab.department }}, {{ site.lab.college }}, {{ site.lab.university }}, Auburn, Alabama.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">🔬 How We Measure</h3>
+        <p style="font-size:0.9rem;color:var(--slate);">fNIRS, physiological sensors, ecological momentary assessment (EMA), and observational methods — capturing real-time brain and body responses in adolescents.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">🤝 Who We Study</h3>
+        <p style="font-size:0.9rem;color:var(--slate);">Adolescents and their families, particularly teens navigating social contexts across diverse backgrounds.</p>
+      </div>
+    </div>
+  </div>
+</div>

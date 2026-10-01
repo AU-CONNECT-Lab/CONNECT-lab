@@ -1,0 +1,43 @@
+---
+layout: default
+title: Projects
+---
+
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">Research</p>
+  <h2 class="section-title">Projects</h2>
+  <p class="section-intro">Our research asks how the social worlds adolescents inhabit — families, neighborhoods, peer networks — shape the developing brain and body.</p>
+
+  {% assign projects = site.projects | sort: "order" %}
+  {% for project in projects %}
+  {% unless project.title contains 'TEMPLATE' %}
+  <div class="project-card">
+    <h3>
+      {{ project.title }}
+      {% if project.status == 'active' %}
+        <span class="status-badge active">Active</span>
+      {% elsif project.status == 'developing' %}
+        <span class="status-badge">In Development</span>
+      {% elsif project.status == 'completed' %}
+        <span class="status-badge">Completed</span>
+      {% endif %}
+    </h3>
+    <div style="margin-bottom:0.5rem;">
+      {% for tag in project.tags %}
+        {% if tag == 'fNIRS' or tag == 'fnirs' %}
+          <span class="tag tag-fnirs">{{ tag }}</span>
+        {% elsif tag == 'neighborhood' or tag == 'context' or tag == 'family' %}
+          <span class="tag tag-context">{{ tag }}</span>
+        {% elsif tag == 'adolescence' or tag == 'teen' or tag == 'EMA' %}
+          <span class="tag tag-teen">{{ tag }}</span>
+        {% else %}
+          <span class="tag tag-method">{{ tag }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="project-body">{{ project.content | markdownify }}</div>
+  </div>
+  {% endunless %}
+  {% endfor %}
+</div>

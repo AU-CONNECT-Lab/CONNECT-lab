@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<div class="section" style="max-width:760px;">
+  <p style="margin-bottom:0.75rem;"><a href="{{ site.baseurl }}/updates/" style="font-size:0.875rem;color:var(--slate);">← All Updates</a></p>
+  <div class="divider"></div>
+  <p class="section-eyebrow">{{ page.category }}</p>
+  <h1 class="section-title">{{ page.title }}</h1>
+  <p style="font-size:0.875rem;color:var(--taupe);margin-bottom:2rem;">{{ page.date | date: "%B %-d, %Y" }}{% if page.author %} · {{ page.author }}{% endif %}</p>
+  <div style="font-size:0.975rem;color:var(--slate);line-height:1.85;">
+    {{ content }}
+  </div>
+  <p style="margin-top:2rem;"><a href="{{ site.baseurl }}/updates/" class="btn btn-outline">← Back to Updates</a></p>
+</div>

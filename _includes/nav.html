@@ -1,0 +1,21 @@
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="{{ site.baseurl }}/">
+      <img src="{{ site.baseurl }}/assets/images/connect-lab-logo.png" alt="CONNECT Lab logo" style="height:38px;width:38px;object-fit:contain;margin-right:0.5rem;vertical-align:middle;">
+      <strong>CONNECT</strong> Lab
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ site.baseurl }}/" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+      <li><a href="{{ site.baseurl }}/team/" {% if page.url contains 'team' %}class="active"{% endif %}>Our Team</a></li>
+      <li><a href="{{ site.baseurl }}/projects/" {% if page.url contains 'projects' %}class="active"{% endif %}>Projects</a></li>
+      <li><a href="{{ site.baseurl }}/publications/" {% if page.url contains 'publications' %}class="active"{% endif %}>Publications</a></li>
+      <li><a href="{{ site.baseurl }}/resources/" {% if page.url contains 'resources' %}class="active"{% endif %}>What is fNIRS?</a></li>
+      <li><a href="{{ site.baseurl }}/updates/" {% if page.url contains 'updates' %}class="active"{% endif %}>Lab Updates</a></li>
+      <li><a href="{{ site.baseurl }}/collaborators/" {% if page.url contains 'collaborators' %}class="active"{% endif %}>Collaborators</a></li>
+      <li><a href="{{ site.baseurl }}/contact/" class="btn-nav {% if page.url contains 'contact' %}active{% endif %}">Join Us</a></li>
+    </ul>
+  </div>
+</nav>

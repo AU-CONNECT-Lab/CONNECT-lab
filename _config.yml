@@ -1,0 +1,55 @@
+title: CONNECT Lab
+description: CONtext and NEurophysiological Correlates of Teen Development
+url: "https://YOUR-GITHUB-USERNAME.github.io"
+baseurl: "/connect-lab"
+
+# Lab info (edit these)
+lab:
+  pi_name: Dr. Tianying Cai
+  pi_email: tzc0078@auburn.edu
+  pi_title: Assistant Professor of Human Development and Family Science
+  university: Auburn University
+  department: Department of Human Development and Family Science
+  college: College of Human Sciences
+  google_scholar: ""   # paste your Google Scholar URL here
+  twitter: ""          # optional
+  lab_phone: ""        # optional
+
+# Jekyll settings
+theme: null
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections — each folder below is a "collection"
+# Jekyll reads every .md file in the folder and makes it available as data
+collections:
+  members:
+    output: false       # we render members on the team page, not as individual URLs
+  publications:
+    output: false
+  projects:
+    output: false
+  updates:
+    output: true        # each update gets its own page (optional)
+    permalink: /updates/:name/
+  resources:
+    output: true
+    permalink: /resources/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: members
+    values:
+      layout: null
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: null
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

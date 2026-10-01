@@ -1,0 +1,74 @@
+---
+layout: default
+title: Join Us
+---
+
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">Get Involved</p>
+  <h2 class="section-title">Contact & Join Us</h2>
+
+  <div class="contact-grid">
+    <div>
+      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.75rem;">
+        We welcome inquiries from prospective graduate students, undergraduate research assistants,
+        and potential collaborators. CONNECT Lab is new — this is your chance to shape it from the start.
+      </p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <strong>Email</strong>
+          <span><a href="mailto:{{ site.lab.pi_email }}">{{ site.lab.pi_email }}</a></span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <strong>Location</strong>
+          <span>{{ site.lab.department }}<br>{{ site.lab.college }}<br>{{ site.lab.university }}, Auburn, Alabama</span>
+        </div>
+      </div>
+
+      {% if site.lab.lab_phone %}
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div>
+          <strong>Phone</strong>
+          <span>{{ site.lab.lab_phone }}</span>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="contact-detail">
+        <div class="contact-icon">🔗</div>
+        <div>
+          <strong>Links</strong>
+          <span>
+            {% if site.lab.google_scholar %}<a href="{{ site.lab.google_scholar }}" target="_blank">Google Scholar</a> · {% endif %}
+            Auburn Faculty Page
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="join-card">
+      <h3>Want the experience of launching a brand-new research lab?</h3>
+      <p>
+        Curious about how environments like neighborhood and family "get under the skin and skull"
+        to shape teen well-being? Join us! You will explore how adolescents' brains and bodies
+        connect to their social worlds — from broader neighborhood contexts to everyday communication
+        with others.
+      </p>
+      <ul class="join-perks">
+        <li>Contribute to lab management and culture-building</li>
+        <li>Conduct literature reviews and assist with data collection</li>
+        <li>Collect neurophysiological data using fNIRS</li>
+        <li>Develop independent research projects</li>
+        <li>Gain hands-on training at the intersection of brain, behavior, and environment</li>
+      </ul>
+      <a href="mailto:{{ site.lab.pi_email }}" class="btn btn-terra">Get in Touch</a>
+    </div>
+  </div>
+</div>
