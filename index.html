@@ -3,6 +3,17 @@ layout: default
 title: Home
 ---
 
+<!-- LAB PHOTO BANNER — formal by default, crossfades to the candid shot on hover.
+     Swap the two files in assets/images/ to change the photos. -->
+<div class="lab-banner" id="labBanner">
+  <img class="lab-banner-formal" src="{{ site.baseurl }}/assets/images/lab-photo-formal.jpg"
+       alt="The CONNECT Lab team outside Spidle Hall at Auburn University">
+  <img class="lab-banner-fun" src="{{ site.baseurl }}/assets/images/lab-photo-fun.jpg"
+       alt="The CONNECT Lab team being silly — lifting a lab member off the ground"
+       aria-hidden="true">
+  <span class="lab-banner-hint">Hover to meet the real us</span>
+</div>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">

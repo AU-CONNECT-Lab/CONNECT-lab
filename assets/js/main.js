@@ -16,3 +16,11 @@ if (themeToggle) {
     try { localStorage.setItem('connectlab-theme', next); } catch (e) {}
   });
 }
+
+// Lab photo banner — tap to flip on touch devices, where there is no hover
+var labBanner = document.getElementById('labBanner');
+if (labBanner) {
+  labBanner.addEventListener('click', function () {
+    labBanner.classList.toggle('is-flipped');
+  });
+}
