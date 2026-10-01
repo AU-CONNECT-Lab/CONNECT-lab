@@ -1,0 +1,70 @@
+---
+layout: default
+title: Our Team
+---
+
+{% comment %}
+  TEAM PAGE
+  This page builds itself from the files in _members/.
+
+  To add someone:
+    1. Copy _members/TEMPLATE-graduate-student.md
+    2. Rename it lastname-firstname.md and fill it in
+    3. Put their photo in assets/images/team/lastname-firstname.jpg
+  Nothing in this file needs to change when the team changes.
+
+  Which group someone appears in is decided by their `role:` value.
+  Recognised roles: Principal Investigator, Postdoctoral Researcher,
+  Lab Manager, Graduate Student, Undergraduate Research Assistant.
+  Within a group, people are ordered by their `order:` number (low first).
+{% endcomment %}
+
+{% assign pi_list    = site.members | where: "role", "Principal Investigator" | sort: "order" %}
+{% assign postdocs   = site.members | where: "role", "Postdoctoral Researcher" %}
+{% assign managers   = site.members | where: "role", "Lab Manager" %}
+{% assign grads      = site.members | where: "role", "Graduate Student" %}
+{% assign staff_list = postdocs | concat: managers | concat: grads | sort: "order" %}
+{% assign ugrad_list = site.members | where: "role", "Undergraduate Research Assistant" | sort: "order" %}
+
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">Who we are</p>
+  <h2 class="section-title">Our Team</h2>
+  <p class="section-intro">The CONNECT Lab brings together faculty, graduate students, and undergraduate research assistants studying how the social worlds adolescents inhabit shape the developing brain and body.</p>
+
+  {% if pi_list.size > 0 %}
+  <div class="team-grid" style="margin-bottom:2.75rem;">
+    {% for member in pi_list %}
+      {% unless member.name == 'First Last' %}
+        {% include team-card.html member=member is_pi=true %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if staff_list.size > 0 %}
+  <h3 class="team-section-heading">Graduate Students &amp; Staff</h3>
+  <div class="team-grid" style="margin-bottom:2.75rem;">
+    {% for member in staff_list %}
+      {% unless member.name == 'First Last' %}
+        {% include team-card.html member=member %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if ugrad_list.size > 0 %}
+  <h3 class="team-section-heading">Undergraduate Research Assistants</h3>
+  <div class="team-grid">
+    {% for member in ugrad_list %}
+      {% unless member.name == 'First Last' %}
+        {% include team-card.html member=member %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <p style="margin-top:2.75rem;font-size:0.95rem;">
+    Interested in joining the lab? See <a href="{{ '/contact/' | relative_url }}">Join Us</a>.
+  </p>
+</div>

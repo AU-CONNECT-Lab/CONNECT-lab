@@ -179,10 +179,12 @@ main { padding-top: var(--nav-h); }
 /* ── TEAM PAGE ── */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 1.5rem;
 }
 .team-card {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 1px solid var(--peach);
   border-radius: 8px; overflow: hidden;
@@ -400,3 +402,29 @@ main { padding-top: var(--nav-h); }
 }
 .collaborator-info h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--ink); margin-bottom: 0.15rem; }
 .collaborator-info p { font-size: 0.875rem; color: var(--slate); }
+
+/* ── TEAM PAGE: group headings ── */
+.team-section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--peach);
+}
+.team-pronouns { font-weight: 400; font-size: 0.8rem; color: var(--slate); }
+.team-title { font-size: 0.82rem; margin-bottom: 0.6rem; }
+.team-info { display: flex; flex-direction: column; flex: 1; }
+.team-bio { font-size: 0.875rem; color: var(--slate); line-height: 1.6; margin-bottom: 0.75rem; }
+.bio-more { margin: -0.35rem 0 0.75rem; }
+.bio-more summary {
+  cursor: pointer; list-style: none;
+  font-size: 0.8rem; font-weight: 500; color: var(--terra);
+}
+.bio-more summary::-webkit-details-marker { display: none; }
+.bio-more summary::after { content: " ↓"; font-size: 0.75rem; }
+.bio-more[open] summary::after { content: " ↑"; }
+.bio-more summary:hover { text-decoration: underline; }
+.bio-more[open] summary { margin-bottom: 0.5rem; }
+.team-links { margin-top: auto; padding-top: 0.5rem; }

@@ -1,0 +1,46 @@
+{% comment %}
+  One team member card.
+  Parameters: member (required), is_pi (optional, true for the PI's larger card)
+  Long bios are collapsed behind "Read full bio" so cards stay a sane height.
+{% endcomment %}
+{% assign bio_text = include.member.bio | strip_newlines | strip %}
+{% assign bio_words = bio_text | split: ' ' %}
+<div class="team-card{% if include.is_pi %} pi{% endif %}">
+  <div class="team-photo">
+    {% if include.member.photo and include.member.photo != '' %}
+      <img src="{{ include.member.photo | relative_url }}" alt="{{ include.member.name }}" loading="lazy">
+    {% else %}
+      <span class="team-photo-placeholder">{{ include.member.name | slice: 0 }}</span>
+    {% endif %}
+  </div>
+  <div class="team-info">
+    <h3>{{ include.member.name }}{% if include.member.pronouns and include.member.pronouns != '' %} <span class="team-pronouns">({{ include.member.pronouns }})</span>{% endif %}</h3>
+    <p class="team-role">{{ include.member.role }}</p>
+    {% if include.member.title and include.member.title != '' %}<p class="team-title">{{ include.member.title }}</p>{% endif %}
+
+    {% if bio_text != '' %}
+      {% if bio_words.size > 34 %}
+        <p class="team-bio">{{ bio_text | truncatewords: 32 }}</p>
+        <details class="bio-more">
+          <summary>Read full bio</summary>
+          <p class="team-bio">{{ bio_text }}</p>
+        </details>
+      {% else %}
+        <p class="team-bio">{{ bio_text }}</p>
+      {% endif %}
+    {% endif %}
+
+    {% if include.member.research_interests %}
+    <ul class="research-interests">
+      {% for interest in include.member.research_interests %}<li>{{ interest }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="team-links">
+      {% if include.member.email and include.member.email != '' %}<a href="mailto:{{ include.member.email }}">Email</a>{% endif %}
+      {% if include.member.website and include.member.website != '' %}<a href="{{ include.member.website }}" target="_blank" rel="noopener">Profile</a>{% endif %}
+      {% if include.member.google_scholar and include.member.google_scholar != '' %}<a href="{{ include.member.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a>{% endif %}
+      {% if include.member.cv and include.member.cv != '' %}<a href="{{ include.member.cv | relative_url }}" target="_blank" rel="noopener">CV</a>{% endif %}
+    </div>
+  </div>
+</div>

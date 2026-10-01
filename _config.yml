@@ -1,6 +1,6 @@
 title: CONNECT Lab
 description: CONtext and NEurophysiological Correlates of Teen Development
-url: "https://YOUR-GITHUB-USERNAME.github.io"
+url: "https://YOUR-GITHUB-USERNAME.github.io"   # TODO: replace with your real GitHub Pages URL
 baseurl: "/connect-lab"
 
 # Lab info (edit these)
@@ -49,6 +49,13 @@ defaults:
       type: publications
     values:
       layout: null
+  # Individual Lab Update pages use _layouts/update.html.
+  # Without this they render as bare HTML with no navigation.
+  - scope:
+      path: ""
+      type: updates
+    values:
+      layout: update
 
 plugins:
   - jekyll-feed

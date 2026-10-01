@@ -46,7 +46,7 @@ title: Home
 </section>
 
 <!-- RECENT UPDATES (pulls from _updates, featured: true) -->
-{% assign featured_updates = site.updates | where: "featured", true | sort: "date" | reverse | limit: 3 %}
+{% assign featured_updates = site.updates | where: "featured", true | sort: "date" | reverse %}
 {% if featured_updates.size > 0 %}
 <div class="section-alt">
   <div class="section">
@@ -54,7 +54,7 @@ title: Home
     <p class="section-eyebrow">Latest News</p>
     <h2 class="section-title">Lab Updates</h2>
     <div class="card-grid">
-      {% for update in featured_updates %}
+      {% for update in featured_updates limit: 3 %}
       <div class="update-card">
         <div class="update-header">
           <span class="update-date">{{ update.date | date: "%B %Y" }}</span>

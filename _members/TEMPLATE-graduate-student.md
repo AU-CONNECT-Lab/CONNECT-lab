@@ -12,7 +12,7 @@ email: abc1234@auburn.edu
 google_scholar: ""
 cv: ""
 pronouns: ""
-order: 2                         # lower number = appears earlier on page
+order: 999                       # lower number = appears earlier on page
 
 bio: |
   Write 2–3 sentences about this person's background and research focus.
