@@ -61,7 +61,7 @@ title: Home
           <span class="category-badge">{{ update.category }}</span>
         </div>
         <div class="update-body">
-          <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--ink);text-decoration:none;">{{ update.title }}</a></h3>
+          <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--text);text-decoration:none;">{{ update.title }}</a></h3>
           <p>{{ update.content | strip_html | truncatewords: 30 }}</p>
         </div>
       </div>
