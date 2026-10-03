@@ -6,7 +6,8 @@ baseurl: "/connect-lab"
 # Lab info (edit these)
 lab:
   pi_name: Dr. Tianying Cai
-  pi_email: tzc0078@auburn.edu
+  pi_email: tic0006@auburn.edu
+  lab_email: chct@auburn.edu
   pi_title: Assistant Professor of Human Development and Family Science
   university: Auburn University
   department: Department of Human Development and Family Science

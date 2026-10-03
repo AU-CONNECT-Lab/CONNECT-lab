@@ -1,5 +1,5 @@
 ---
-title: "Association Between Neighborhood Opportunity, Cognitive Function, and Brain Structure in Youths"
+title: "Association between neighborhood opportunity, cognitive function, and brain structure in youths"
 authors: "Zhou, L.*, Cai, T., & Ip, K. I."
 year: 2025
 journal: "Biological Psychiatry Global Open Science"

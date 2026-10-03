@@ -3,6 +3,7 @@ title: "Antecedents and influences of Chinese parental communication about COVID
 authors: "Cai, T., Zhou, Z.*, Yang, B.*, Wang, F.*, Chen, B.-B., & Qu, Y."
 year: 2025
 journal: "Developmental Psychology"
+# TODO: add volume, issue, pages and DOI once the print issue is assigned
 volume: ""
 issue: ""
 pages: ""

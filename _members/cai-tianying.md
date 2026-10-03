@@ -3,7 +3,7 @@ name: Tianying Cai (T'ien-Ying Ts'ai)
 role: Principal Investigator
 title: Assistant Professor of Human Development and Family Science
 photo: /assets/images/team/cai-tianying.jpg
-email: tzc0078@auburn.edu
+email: tic0006@auburn.edu
 website: https://humsci.auburn.edu/directory/profile.php?id=tic0006
 google_scholar: ""
 cv: ""

@@ -1,0 +1,9 @@
+{% comment %}
+  A sub-heading plus a list of publications.
+  Parameters: heading (string), group (an already-filtered array)
+  Prints nothing when the group is empty, so no orphan headings.
+{% endcomment %}
+{% if include.group.size > 0 %}
+  <h3 class="pub-subcat">{{ include.heading }}</h3>
+  {% for pub in include.group %}{% include pub-item.html pub=pub %}{% endfor %}
+{% endif %}

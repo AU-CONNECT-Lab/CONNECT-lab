@@ -1,5 +1,5 @@
 ---
-title: "Linking Mothers' Autonomic Functioning and Their Autonomy-Relevant Parenting"
+title: "Linking mothers' autonomic functioning and their autonomy-relevant parenting"
 authors: "Cai, T., & Tu, K. M."
 year: 2026
 journal: "Developmental Psychobiology"

@@ -3,130 +3,58 @@ layout: default
 title: Publications
 ---
 
+{% comment %}
+  Publications build themselves from the files in _publications/.
+
+  To add one: copy TEMPLATE-publication.md, rename it YEAR-slug.md, fill it in,
+  and give it one or more `categories:` — that is what decides where it appears.
+  Categories in use: neuroscience, psychophysiology, neighborhood, parent, peer,
+  naturalistic, other. An entry with no categories will not appear anywhere.
+{% endcomment %}
+
+{% assign all_pubs = site.publications | where_exp: "p", "p.title != 'Full paper title here'" %}
+{% assign neuro        = all_pubs | where_exp: "p", "p.categories contains 'neuroscience'"    | sort: "year" | reverse %}
+{% assign physio       = all_pubs | where_exp: "p", "p.categories contains 'psychophysiology'"| sort: "year" | reverse %}
+{% assign neighborhood = all_pubs | where_exp: "p", "p.categories contains 'neighborhood'"    | sort: "year" | reverse %}
+{% assign parenting    = all_pubs | where_exp: "p", "p.categories contains 'parent'"          | sort: "year" | reverse %}
+{% assign peer         = all_pubs | where_exp: "p", "p.categories contains 'peer'"            | sort: "year" | reverse %}
+{% assign naturalistic = all_pubs | where_exp: "p", "p.categories contains 'naturalistic'"    | sort: "year" | reverse %}
+{% assign other        = all_pubs | where_exp: "p", "p.categories contains 'other'"           | sort: "year" | reverse %}
+
 <div class="section">
   <div class="divider"></div>
   <p class="section-eyebrow">Scholarship</p>
   <h2 class="section-title">Selected Publications</h2>
-  <p class="section-intro">Research from Dr. Cai and CONNECT Lab, organized by theme. The same publication may appear in multiple categories. * indicates student author.</p>
+  <p class="section-intro">Research from Dr.&nbsp;Cai and the CONNECT Lab, grouped by theme. A publication may appear under more than one theme. Lab authors are shown in bold; an asterisk (*) marks a student author.</p>
 
-  <!-- BIOLOGICAL PROCESSES -->
   <div class="pub-category">
     <h2 class="pub-cat-title">Biological Processes</h2>
-
-    <h3 class="pub-subcat">Developmental Neuroscience</h3>
-    {% assign neuro = site.publications | where_exp: "p", "p.categories contains 'neuroscience'" | sort: "year" | reverse %}
-    {% for pub in neuro %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}{% if pub.preprint %}<a href="{{ pub.preprint }}" target="_blank">Preprint</a>{% endif %}{% if pub.pdf %}<a href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
-
-    <h3 class="pub-subcat">Psychophysiology & Autonomic Functioning</h3>
-    {% assign physio = site.publications | where_exp: "p", "p.categories contains 'psychophysiology'" | sort: "year" | reverse %}
-    {% for pub in physio %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
+    {% include pub-group.html heading="Developmental Neuroscience" group=neuro %}
+    {% include pub-group.html heading="Psychophysiology & Autonomic Functioning" group=physio %}
   </div>
 
-  <!-- SOCIAL CONTEXTS -->
   <div class="pub-category">
     <h2 class="pub-cat-title">Social Contexts</h2>
-
-    <h3 class="pub-subcat">Neighborhood & Ecological Environment</h3>
-    {% assign neighborhood = site.publications | where_exp: "p", "p.categories contains 'neighborhood'" | sort: "year" | reverse %}
-    {% for pub in neighborhood %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
-
-    <h3 class="pub-subcat">Parent</h3>
-    {% assign parent = site.publications | where_exp: "p", "p.categories contains 'parent'" | sort: "year" | reverse %}
-    {% for pub in parent %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
-
-    <h3 class="pub-subcat">Peer</h3>
-    {% assign peer = site.publications | where_exp: "p", "p.categories contains 'peer'" | sort: "year" | reverse %}
-    {% for pub in peer %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
+    {% include pub-group.html heading="Neighborhood & Ecological Environment" group=neighborhood %}
+    {% include pub-group.html heading="Parenting & Family" group=parenting %}
+    {% include pub-group.html heading="Peer Relationships" group=peer %}
   </div>
 
-  <!-- BEHAVIOR IN CONTEXT -->
   <div class="pub-category">
     <h2 class="pub-cat-title">Behavior in Context</h2>
-
-    <h3 class="pub-subcat">Naturalistic Interactions</h3>
-    {% assign naturalistic = site.publications | where_exp: "p", "p.categories contains 'naturalistic'" | sort: "year" | reverse %}
-    {% for pub in naturalistic %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
+    {% include pub-group.html heading="Naturalistic Interactions" group=naturalistic %}
   </div>
 
-  <!-- OTHER -->
   <div class="pub-category">
     <h2 class="pub-cat-title">Other</h2>
-    <h3 class="pub-subcat">Physical Health, Sleep & Nutrition</h3>
-    {% assign other = site.publications | where_exp: "p", "p.categories contains 'other'" | sort: "year" | reverse %}
-    {% for pub in other %}{% unless pub.title contains 'TEMPLATE' %}
-    <div class="pub-item">
-      <div class="pub-year">{{ pub.year }}</div>
-      <div class="pub-content">
-        <h3>{{ pub.title }}</h3>
-        <p class="pub-authors">{{ pub.authors }}</p>
-        <p class="pub-journal">{{ pub.journal }}{% if pub.volume %}, <em>{{ pub.volume }}</em>{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
-        <div class="pub-links">{% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank">DOI</a>{% endif %}</div>
-      </div>
-    </div>
-    {% endunless %}{% endfor %}
+    {% include pub-group.html heading="Physical Health, Sleep & Nutrition" group=other %}
   </div>
 
-  <div class="card" style="margin-top:2rem;background:var(--ivory);">
-    <p style="font-size:0.9rem;color:var(--slate);line-height:1.75;">* indicates student author. The same publication may appear in multiple thematic categories. For a complete list, contact <a href="mailto:{{ site.lab.pi_email }}">Dr. Cai</a>.</p>
+  <div class="card" style="background:var(--ivory);margin-top:2rem;">
+    <p class="fnirs-body">
+      Lab authors in <strong>bold</strong>; * indicates a student author. A publication may be listed under
+      more than one theme. For a complete and current list, contact
+      <a href="mailto:{{ site.lab.pi_email }}">Dr.&nbsp;Cai</a>.
+    </p>
   </div>
 </div>

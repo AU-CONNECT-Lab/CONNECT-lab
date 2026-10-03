@@ -5,6 +5,7 @@ year: 2022
 journal: "Developmental Psychobiology"
 volume: "64"
 issue: "8"
+pages: "e22338"
 doi: "10.1002/dev.22338"
 status: published
 categories:

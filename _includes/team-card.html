@@ -20,10 +20,12 @@
 
     {% if bio_text != '' %}
       {% if bio_words.size > 34 %}
-        <p class="team-bio">{{ bio_text | truncatewords: 32 }}</p>
         <details class="bio-more">
-          <summary>Read full bio</summary>
-          <p class="team-bio">{{ bio_text }}</p>
+          <summary>
+            <span class="bio-preview">{{ bio_text | truncatewords: 32 }}</span>
+            <span class="bio-toggle"></span>
+          </summary>
+          <p class="team-bio bio-full">{{ bio_text }}</p>
         </details>
       {% else %}
         <p class="team-bio">{{ bio_text }}</p>

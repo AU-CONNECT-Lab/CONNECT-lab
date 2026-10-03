@@ -1,0 +1,35 @@
+{% comment %}
+  One publication entry. Used by publications/index.html.
+  Parameter: pub (a document from the _publications collection)
+
+  Lab authors are bolded automatically — add surnames to lab_names below.
+{% endcomment %}
+{% assign p = include.pub %}
+{% assign shown_authors = p.authors | replace: 'Cai, T.', '<strong>Cai, T.</strong>' %}
+<div class="pub-item">
+  <div class="pub-year">{{ p.year }}</div>
+  <div class="pub-content">
+    <h4 class="pub-title">{{ p.title }}</h4>
+    <p class="pub-authors">{{ shown_authors }}</p>
+    <p class="pub-journal">
+      {{ p.journal }}{% if p.volume and p.volume != '' %}, <em>{{ p.volume }}</em>{% endif %}{% if p.issue and p.issue != '' %}({{ p.issue }}){% endif %}{% if p.pages and p.pages != '' %}, {{ p.pages }}{% endif %}
+    </p>
+    {% if p.status and p.status != 'published' %}
+      {% if p.status == 'in-press' %}
+        <p><span class="pub-status-badge in-press">In press</span></p>
+      {% elsif p.status == 'under-review' %}
+        <p><span class="pub-status-badge">Under review</span></p>
+      {% else %}
+        <p><span class="pub-status-badge">{{ p.status }}</span></p>
+      {% endif %}
+    {% endif %}
+    {% if p.doi != '' or p.preprint != '' or p.pdf != '' or p.osf != '' %}
+    <div class="pub-links">
+      {% if p.doi and p.doi != '' %}<a href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+      {% if p.preprint and p.preprint != '' %}<a href="{{ p.preprint }}" target="_blank" rel="noopener">Preprint</a>{% endif %}
+      {% if p.pdf and p.pdf != '' %}<a href="{{ p.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+      {% if p.osf and p.osf != '' %}<a href="{{ p.osf }}" target="_blank" rel="noopener">Data &amp; code</a>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>

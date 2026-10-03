@@ -6,20 +6,102 @@ title: Join Us
 <div class="section">
   <div class="divider"></div>
   <p class="section-eyebrow">Get Involved</p>
-  <h2 class="section-title">Contact & Join Us</h2>
+  <h2 class="section-title">Join the CONNECT Lab</h2>
+  <p class="section-intro">We are a new lab, and we are building the team now. That makes this an unusually good moment to join — there is real work to do, and room to shape how the lab runs.</p>
 
-  <div class="contact-grid">
+  <!-- ── UNDERGRADUATES — the lab's main recruiting need, so it leads ── -->
+  <div class="join-card join-card--lead">
+    <p class="join-eyebrow">Undergraduate research assistants</p>
+    <h3>Are you an Auburn undergraduate? We are actively recruiting.</h3>
+    <p>
+      If you are curious about how young people's social worlds — families, friendships,
+      neighborhoods — shape the developing brain and body, we would like to hear from you.
+      <strong>No prior research experience is required.</strong> What matters is curiosity,
+      reliability, and a willingness to learn.
+    </p>
+    <p>
+      Because the lab is new, research assistants here do real work from the start. You will be
+      trained on our equipment and take part in running studies, not only entering data.
+    </p>
+
+    <p class="join-subhead">What you would do</p>
+    <ul class="join-perks">
+      <li>Train on fNIRS and help run hyperscanning sessions with participants</li>
+      <li>Assist with recruitment, scheduling, and data collection</li>
+      <li>Conduct literature reviews and learn how a study gets designed</li>
+      <li>Help build the lab's culture and day-to-day practices</li>
+      <li>Develop an independent project, if that is something you want</li>
+    </ul>
+
+    <p class="join-subhead">When to apply</p>
+    <p>
+      Dr.&nbsp;Cai accepts applications for the <strong>spring and summer semesters</strong>.
+      Getting in touch a few weeks before the semester begins gives us the best chance of
+      finding a role that fits your schedule.
+    </p>
+
+    <p class="join-subhead">How to apply</p>
+    <p>
+      Email Dr.&nbsp;Cai at
+      <a href="mailto:{{ site.lab.pi_email }}">{{ site.lab.pi_email }}</a>.
+      A short note is plenty — please include:
+    </p>
+    <ul class="join-perks">
+      <li>Your year and major</li>
+      <li>What interests you about this research</li>
+      <li>Roughly how many hours a week you could commit, and for how many semesters</li>
+      <li>A résumé or unofficial transcript, if you have one handy</li>
+    </ul>
+
+    <a href="mailto:{{ site.lab.pi_email }}?subject=Undergraduate%20RA%20inquiry%20%E2%80%94%20CONNECT%20Lab"
+       class="btn btn-terra">Email Dr. Cai</a>
+  </div>
+
+  <div class="contact-grid" style="margin-top:3rem;">
     <div>
-      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.75rem;">
-        We welcome inquiries from prospective graduate students, undergraduate research assistants,
-        and potential collaborators. CONNECT Lab is new — this is your chance to shape it from the start.
+      <h3 class="fnirs-h3">Prospective graduate students</h3>
+      <p class="fnirs-body">
+        If you are thinking about applying to work with Dr.&nbsp;Cai, please email her directly
+        <strong>before</strong> you submit an application. Graduate admissions depend a great deal on
+        fit between your interests and where the lab is heading, and a short exchange early on tells
+        both of us far more than an application file does.
       </p>
+      <p class="fnirs-body">
+        In your email, say a little about your research interests, what draws you to this lab in
+        particular, and any research experience you have. A CV is helpful. Questions about the
+        program, funding, or what the next few years would actually look like are all welcome —
+        ask them early rather than wondering.
+      </p>
+      <p class="fnirs-body">
+        Graduate students join through the Department of Human Development and Family Science
+        at Auburn University.
+      </p>
+      <p class="fnirs-body">
+        <a href="mailto:{{ site.lab.pi_email }}?subject=Prospective%20graduate%20student%20inquiry">Email Dr.&nbsp;Cai</a>
+      </p>
+
+      <h3 class="fnirs-h3" style="margin-top:2.5rem;">Collaborators and community partners</h3>
+      <p class="fnirs-body">
+        We are glad to hear from researchers, schools, clinics and community organizations working
+        on related questions — particularly where hyperscanning or fNIRS could be useful.
+        Write to <a href="mailto:{{ site.lab.lab_email }}">{{ site.lab.lab_email }}</a>.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="fnirs-h3">Contact</h3>
 
       <div class="contact-detail">
         <div class="contact-icon">✉️</div>
         <div>
           <strong>Email</strong>
-          <span><a href="mailto:{{ site.lab.pi_email }}">{{ site.lab.pi_email }}</a></span>
+          <span>
+            <a href="mailto:{{ site.lab.pi_email }}">{{ site.lab.pi_email }}</a>
+            <span style="color:var(--taupe);">&nbsp;· {{ site.lab.pi_name }}</span>
+            <br>
+            <a href="mailto:{{ site.lab.lab_email }}">{{ site.lab.lab_email }}</a>
+            <span style="color:var(--taupe);">&nbsp;· general enquiries</span>
+          </span>
         </div>
       </div>
 
@@ -31,7 +113,7 @@ title: Join Us
         </div>
       </div>
 
-      {% if site.lab.lab_phone %}
+      {% if site.lab.lab_phone and site.lab.lab_phone != '' %}
       <div class="contact-detail">
         <div class="contact-icon">📞</div>
         <div>
@@ -46,29 +128,11 @@ title: Join Us
         <div>
           <strong>Links</strong>
           <span>
-            {% if site.lab.google_scholar %}<a href="{{ site.lab.google_scholar }}" target="_blank">Google Scholar</a> · {% endif %}
-            Auburn Faculty Page
+            {% if site.lab.google_scholar and site.lab.google_scholar != '' %}<a href="{{ site.lab.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a> · {% endif %}
+            <a href="https://humsci.auburn.edu/directory/profile.php?id=tic0006" target="_blank" rel="noopener">Auburn faculty page</a>
           </span>
         </div>
       </div>
-    </div>
-
-    <div class="join-card">
-      <h3>Want the experience of launching a brand-new research lab?</h3>
-      <p>
-        Curious about how environments like neighborhood and family "get under the skin and skull"
-        to shape teen well-being? Join us! You will explore how adolescents' brains and bodies
-        connect to their social worlds — from broader neighborhood contexts to everyday communication
-        with others.
-      </p>
-      <ul class="join-perks">
-        <li>Contribute to lab management and culture-building</li>
-        <li>Conduct literature reviews and assist with data collection</li>
-        <li>Collect neurophysiological data using fNIRS</li>
-        <li>Develop independent research projects</li>
-        <li>Gain hands-on training at the intersection of brain, behavior, and environment</li>
-      </ul>
-      <a href="mailto:{{ site.lab.pi_email }}" class="btn btn-terra">Get in Touch</a>
     </div>
   </div>
 </div>

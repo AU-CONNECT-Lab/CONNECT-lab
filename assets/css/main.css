@@ -810,3 +810,251 @@ body { background: var(--cream); color: var(--text); }
   .nav-links a { font-size: 0.95rem; padding: 0.55rem 0.75rem; }
   .nav-links .btn-nav { align-self: flex-start; }
 }
+
+/* ── Bio toggle: preview is REPLACED by the full bio, not repeated ──
+   Collapsed: 32-word preview + "Read full bio"
+   Expanded:  full bio + "Show less"                                 */
+.bio-more { margin: 0 0 0.75rem; }
+.bio-more > summary {
+  display: block;
+  cursor: pointer;
+  list-style: none;
+}
+.bio-more > summary::-webkit-details-marker { display: none; }
+.bio-more .bio-preview {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
+}
+.bio-more[open] .bio-preview { display: none; }
+
+.bio-more .bio-toggle {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--terra);
+}
+.bio-more .bio-toggle::before { content: "Read full bio ↓"; }
+.bio-more[open] .bio-toggle::before { content: "Show less ↑"; }
+.bio-more > summary:hover .bio-toggle { text-decoration: underline; }
+.bio-more[open] > summary { margin-top: 0.35rem; order: 2; }
+.bio-more .bio-full { margin-bottom: 0.35rem; }
+/* When open, put the full bio above the "Show less" control.
+   Applied only to [open] so the closed state keeps the browser's
+   default hide-the-content behaviour. */
+.bio-more[open] { display: flex; flex-direction: column; }
+.bio-more[open] > summary { order: 2; }
+.bio-more[open] > .bio-full { order: 1; }
+/* The first version of this control drew its own arrow; the label
+   now carries one, so suppress the old pseudo-element. */
+.bio-more > summary::after,
+.bio-more[open] > summary::after { content: none; }
+
+/* ── PI card: square photo, matching everyone else ────────────
+   The original styling gave the PI a short 200px banner crop.
+   Square keeps the whole team page consistent.                 */
+.team-card.pi { max-width: 400px; }
+.team-card.pi .team-photo {
+  aspect-ratio: 1;
+  height: auto;
+}
+
+/* ── WHAT IS fNIRS page ───────────────────────────────────────── */
+.fnirs-h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--peach);
+}
+.fnirs-term {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.fnirs-body {
+  font-size: 0.925rem;
+  color: var(--slate);
+  line-height: 1.75;
+}
+.fnirs-cite {
+  font-size: 0.8rem;
+  color: var(--taupe);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+/* Neural activity → ↑ blood flow → ↑ HbO + ↓ HbR */
+.fnirs-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 2rem;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid var(--peach);
+  border-left: 4px solid var(--orange);
+  border-radius: 0 10px 10px 0;
+  background: var(--surface);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.fnirs-chain .fnirs-arrow { color: var(--orange); font-weight: 700; }
+
+/* Numbered walkthrough */
+.fnirs-steps {
+  list-style: none;
+  counter-reset: fnirs;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  max-width: 72ch;
+}
+.fnirs-steps > li {
+  counter-increment: fnirs;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.925rem;
+  color: var(--slate);
+  line-height: 1.75;
+}
+.fnirs-steps > li::before {
+  content: counter(fnirs);
+  position: absolute;
+  left: 0; top: 0.1rem;
+  width: 2rem; height: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.fnirs-steps > li strong { color: var(--text); }
+
+.fnirs-list {
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  max-width: 68ch;
+}
+.fnirs-list > li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.925rem;
+  color: var(--slate);
+  line-height: 1.7;
+}
+.fnirs-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.fnirs-list > li strong { color: var(--text); }
+
+@media (max-width: 768px) {
+  .fnirs-chain { font-size: 0.9rem; padding: 0.9rem 1rem; }
+  .fnirs-steps > li { padding-left: 2.6rem; }
+}
+/* arrows are text, so they need the readable orange, not the bright one */
+.fnirs-chain .fnirs-arrow { color: var(--terra); }
+
+/* ── Photos on content pages ──────────────────────────────────── */
+.photo-wide {
+  margin: 0 0 2.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--peach);
+  background: var(--surface);
+}
+.photo-wide img { width: 100%; height: auto; display: block; }
+.photo-wide figcaption,
+.photo-figure figcaption {
+  font-size: 0.8rem;
+  color: var(--taupe);
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+}
+.photo-split {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.85fr) 1.15fr;
+  gap: 2rem;
+  align-items: start;
+}
+.photo-figure {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--peach);
+  background: var(--surface);
+}
+.photo-figure img { width: 100%; height: auto; display: block; }
+.photo-split .fnirs-body { margin-bottom: 1rem; }
+@media (max-width: 768px) {
+  .photo-split { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+/* ── Publications page ────────────────────────────────────────── */
+.pub-title {
+  font-family: var(--font-serif);
+  font-size: 0.975rem;
+  font-weight: 650;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.pub-authors strong { color: var(--text); font-weight: 650; }
+.pub-status-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  margin-bottom: 0.5rem;
+  border-radius: 20px;
+  background: var(--ivory);
+  color: var(--slate);
+  border: 1px solid var(--peach);
+}
+.pub-status-badge.in-press { background: var(--orange); color: var(--navy); border-color: var(--orange); }
+.pub-subcat + .pub-item { margin-top: 0.25rem; }
+
+/* ── Join Us page: the undergraduate block leads the page ─────── */
+.join-card--lead { padding: 2.75rem 3rem; }
+.join-card--lead h3 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 1.1rem; }
+.join-card--lead p { max-width: 70ch; }
+.join-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange-lt);
+  margin-bottom: 0.6rem;
+  opacity: 1;
+}
+.join-subhead {
+  font-weight: 650;
+  color: #fff;
+  margin: 1.6rem 0 0.5rem;
+  opacity: 1;
+}
+.join-card a:not(.btn) { color: var(--orange-lt); text-decoration: underline; }
+.join-card a:not(.btn):hover { color: #fff; }
+.join-card .join-perks { margin-bottom: 0.5rem; }
+.join-card .btn { margin-top: 1.5rem; }
+@media (max-width: 768px) {
+  .join-card--lead { padding: 1.75rem 1.5rem; }
+  .join-card--lead h3 { font-size: 1.25rem; }
+}
