@@ -14,6 +14,8 @@ lab:
   college: College of Human Sciences
   google_scholar: ""   # paste your Google Scholar URL here
   twitter: ""          # optional
+  instagram: "https://www.instagram.com/au_connect_lab/"
+  github: "https://github.com/AU-CONNECT-Lab"
   lab_phone: ""        # optional
 
 # Jekyll settings

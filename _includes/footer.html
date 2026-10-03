@@ -6,6 +6,10 @@
     <p>Led by <strong>{{ site.lab.pi_name }}</strong> ·
       <a href="mailto:{{ site.lab.pi_email }}">{{ site.lab.pi_email }}</a>
     </p>
+    <p class="footer-links">
+      {% if site.lab.instagram and site.lab.instagram != '' %}<a href="{{ site.lab.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+      {% if site.lab.github and site.lab.github != '' %} · <a href="{{ site.lab.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+    </p>
     <p class="footer-tagline">Context · Connection · Growth</p>
   </div>
 </footer>
