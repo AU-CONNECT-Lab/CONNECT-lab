@@ -1,9 +1,17 @@
 {% comment %}
   One team member card.
   Parameters: member (required), is_pi (optional, true for the PI's larger card)
-  Long bios are collapsed behind "Read full bio" so cards stay a sane height.
+
+  `bio`      — the professional bio (always shown)
+  `personal` — optional second paragraph (hobbies, life outside the lab);
+               appears only when the full bio is expanded.
+
+  normalize_whitespace, not strip_newlines: strip_newlines deletes the
+  newlines without replacing them, so a bio written across several lines
+  comes out with words jammed together.
 {% endcomment %}
-{% assign bio_text = include.member.bio | strip_newlines | strip %}
+{% assign bio_text      = include.member.bio      | normalize_whitespace | strip %}
+{% assign personal_text = include.member.personal | normalize_whitespace | strip %}
 {% assign bio_words = bio_text | split: ' ' %}
 <div class="team-card{% if include.is_pi %} pi{% endif %}">
   <div class="team-photo">
@@ -19,13 +27,16 @@
     {% if include.member.title and include.member.title != '' %}<p class="team-title">{{ include.member.title }}</p>{% endif %}
 
     {% if bio_text != '' %}
-      {% if bio_words.size > 34 %}
+      {% if bio_words.size > 34 or personal_text != '' %}
         <details class="bio-more">
           <summary>
             <span class="bio-preview">{{ bio_text | truncatewords: 32 }}</span>
             <span class="bio-toggle"></span>
           </summary>
           <p class="team-bio bio-full">{{ bio_text }}</p>
+          {% if personal_text != '' %}
+          <p class="team-bio bio-full bio-personal">{{ personal_text }}</p>
+          {% endif %}
         </details>
       {% else %}
         <p class="team-bio">{{ bio_text }}</p>

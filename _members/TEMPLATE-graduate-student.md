@@ -17,6 +17,11 @@ order: 999                       # lower number = appears earlier on page
 bio: |
   Write 2–3 sentences about this person's background and research focus.
 
+# Optional: a short personal paragraph (hobbies, interests outside work).
+# Shown as a second paragraph when someone expands the full bio.
+personal: |
+  Outside the lab, ...
+
 research_interests:
   - Interest 1
   - Interest 2

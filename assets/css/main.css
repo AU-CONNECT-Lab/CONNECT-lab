@@ -1060,3 +1060,5 @@ body { background: var(--cream); color: var(--text); }
 }
 .footer-links { margin-top: 0.6rem; font-size: 0.82rem; }
 .footer-links a { color: var(--orange-lt); }
+/* The personal paragraph sits a little apart from the research bio */
+.bio-personal { border-top: 1px solid var(--peach); padding-top: 0.7rem; }
