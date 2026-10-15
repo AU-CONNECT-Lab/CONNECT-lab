@@ -1,13 +1,20 @@
 ---
 title: NIRSPipe
 subtitle: "A BIDS App for fNIRS: preprocessing, postprocessing, hyperscanning, and quality control"
-category: Methodological development
+category: Methodological Development
 category_order: 1
 order: 1
+accent: slate
 status: Pre-release
+image: /assets/images/projects/nirspipe-qr.png
+image_kind: qr
+image_alt: "QR code linking to the NIRSPipe repository on GitHub"
+image_link: https://github.com/AU-CONNECT-Lab/NIRSPipe
+image_caption: Scan for the repository
 links:
-  - label: GitHub
+  - label: NIRSPipe
     url: https://github.com/AU-CONNECT-Lab/NIRSPipe
+    display: github.com/AU-CONNECT-Lab/NIRSPipe
 tags:
   - fNIRS
   - hyperscanning

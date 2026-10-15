@@ -1,9 +1,13 @@
 ---
 title: Sync-A-Thon
-category: Naturalistic interactions
+category: Naturalistic Interactions
 category_order: 2
 order: 1
+accent: terracotta
 status: Active data collection
+image: /assets/images/projects/sync-a-thon-overcooked.jpg
+image_kind: cover
+image_alt: "Overcooked! 2, the cooperative cooking game used in the video gaming condition"
 tags:
   - hyperscanning
   - neural synchrony

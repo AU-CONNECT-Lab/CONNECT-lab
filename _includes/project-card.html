@@ -1,32 +1,85 @@
 {% comment %}
   One project card. Parameter: project
+
+  Optional front-matter in _projects/*.md:
+    accent: <slot>                   — colors the title and the left stripe,
+                                       and sets the title in bold italic.
+                                       Omit it and the card uses the default.
+                                       Slots (defined in main.css):
+                                         slate       #52758A  NIRSPipe
+                                         sky         #7396B2  fNIRS Methods Review
+                                         terracotta  #B66D52  Sync-A-Thon
+                                         violet      #8A78A3  Sync & Switch
+                                         sage        #738C76  Neighborhood, Brain, and Health
+                                         rose        #B46465  AI-Human Interaction Review
+    image / image_alt / image_kind   — one picture beside the text.
+                                       image_kind: "qr"    plain, on white
+                                                   "cover" rounded square
+                                                   "wide"  a wider column,
+                                                           for maps/landscape
+    image_link / image_caption
+    image_caption_link: {url, display}
+                                     — a link printed under the caption,
+                                       for crediting the figure's source.
+    links: [{label, url, display}]   — rendered as "label: display".
+                                       display defaults to the bare URL.
+    logos: [{src, alt, url}]         — a row of study/partner logos under the
+    logos_label:                       text, each on a white chip so dark mode
+                                       doesn't turn them into glaring squares.
+                                       A logo with a url becomes clickable.
 {% endcomment %}
 {% assign pr = include.project %}
-<div class="project-card">
-  <h3>
-    {{ pr.title }}
-    {% if pr.status and pr.status != '' %}<span class="status-badge{% if pr.status contains 'Active' %} active{% endif %}">{{ pr.status }}</span>{% endif %}
-  </h3>
+<div class="project-card{% if pr.accent and pr.accent != '' %} has-accent accent-{{ pr.accent }}{% endif %}">
+  <h3>{{ pr.title }}</h3>
   {% if pr.subtitle and pr.subtitle != '' %}<p class="project-subtitle">{{ pr.subtitle }}</p>{% endif %}
-  {% if pr.tags and pr.tags.size > 0 %}
-  <div class="project-tags">
-    {% for tag in pr.tags %}
-      {% if tag == 'fNIRS' or tag == 'hyperscanning' %}
-        <span class="tag tag-fnirs">{{ tag }}</span>
-      {% elsif tag == 'neighborhood' or tag == 'context' or tag == 'family' %}
-        <span class="tag tag-context">{{ tag }}</span>
-      {% elsif tag == 'adolescence' or tag == 'teen' or tag == 'EMA' %}
-        <span class="tag tag-teen">{{ tag }}</span>
-      {% else %}
-        <span class="tag tag-method">{{ tag }}</span>
+
+  <div class="project-main{% if pr.image and pr.image != '' %} has-media{% endif %}">
+    <div class="project-text">
+      <div class="project-body">{{ pr.content | markdownify }}</div>
+
+      {% if pr.logos and pr.logos.size > 0 %}
+      <div class="project-logos">
+        {% if pr.logos_label and pr.logos_label != '' %}<p class="project-logos-label">{{ pr.logos_label }}</p>{% endif %}
+        <div class="project-logo-row">
+          {% for logo in pr.logos %}
+            {% if logo.url and logo.url != '' %}
+            <a class="project-logo" href="{{ logo.url }}" target="_blank" rel="noopener" title="{{ logo.alt }}"><img src="{{ logo.src | relative_url }}" alt="{{ logo.alt }}" loading="lazy"></a>
+            {% else %}
+            <span class="project-logo"><img src="{{ logo.src | relative_url }}" alt="{{ logo.alt }}" loading="lazy"></span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
       {% endif %}
-    {% endfor %}
+
+      {% if pr.status and pr.status != '' %}
+      <p class="project-status"><span class="project-status-label">Status:</span> {{ pr.status }}</p>
+      {% endif %}
+
+      {% if pr.links and pr.links.size > 0 %}
+      <div class="project-links">
+        {% for l in pr.links %}
+        <p class="project-link"><span class="project-link-label">{{ l.label }}:</span>
+          <a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.display | default: l.url }}</a></p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    {% if pr.image and pr.image != '' %}
+    <figure class="project-media project-media--{{ pr.image_kind | default: 'cover' }}">
+      {% if pr.image_link and pr.image_link != '' %}<a href="{{ pr.image_link }}" target="_blank" rel="noopener">{% endif %}
+      <img src="{{ pr.image | relative_url }}" alt="{{ pr.image_alt | default: pr.title }}" loading="lazy">
+      {% if pr.image_link and pr.image_link != '' %}</a>{% endif %}
+      {% if pr.image_caption and pr.image_caption != '' or pr.image_caption_link %}
+      <figcaption>
+        {% if pr.image_caption and pr.image_caption != '' %}{{ pr.image_caption }}{% endif %}
+        {% if pr.image_caption_link %}
+        <a class="figcaption-link" href="{{ pr.image_caption_link.url }}" target="_blank" rel="noopener">{{ pr.image_caption_link.display | default: pr.image_caption_link.url }}</a>
+        {% endif %}
+      </figcaption>
+      {% endif %}
+    </figure>
+    {% endif %}
   </div>
-  {% endif %}
-  <div class="project-body">{{ pr.content | markdownify }}</div>
-  {% if pr.links and pr.links.size > 0 %}
-  <div class="project-links">
-    {% for l in pr.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}
-  </div>
-  {% endif %}
 </div>

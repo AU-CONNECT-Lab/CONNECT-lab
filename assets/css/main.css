@@ -1083,14 +1083,146 @@ body { background: var(--cream); color: var(--text); }
   margin: -0.25rem 0 0.7rem;
 }
 .project-tags { margin-bottom: 0.5rem; }
-.project-card h3 .status-badge { vertical-align: middle; }
-.project-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.9rem; }
-.project-links a {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--terra);
-  border: 1px solid var(--peach);
-  padding: 0.25rem 0.7rem;
-  border-radius: 4px;
+.project-card h3 { font-size: 1.3rem; letter-spacing: -0.01em; margin-bottom: 0.45rem; }
+/* Status, as a line at the foot of the card rather than a badge */
+.project-status {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--slate);
+  margin: 1.1rem 0 0;
 }
-.project-links a:hover { border-color: var(--orange); text-decoration: none; }
+.project-status-label { font-weight: 650; color: var(--text); }
+
+/* "NIRSPipe: github.com/..." rather than a bare GitHub button */
+.project-links { margin-top: 0.3rem; }
+.project-link { font-size: 0.875rem; line-height: 1.6; margin: 0 0 0.3rem; }
+.project-link:last-child { margin-bottom: 0; }
+.project-link-label { font-weight: 650; color: var(--text); }
+.project-links a {
+  color: var(--accent, var(--terra));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  word-break: break-word;
+}
+.project-links a:hover { text-decoration-thickness: 2px; }
+
+/* Per-project accent: titles and the left stripe.
+   Each color has a light-mode and a dark-mode value so the text stays
+   legible on both the white card and the dark one. */
+/* ── CONNECT Lab project palette ──────────────────────────
+   --brand  is the palette color exactly as specified; it paints the
+            card's left stripe, where there is no legibility concern.
+   --accent is the same color nudged just far enough to stay readable
+            as text on white (light mode) or on the dark card.
+   Add a project with   accent: <slot>   in its front matter.          */
+.project-card { --brand: var(--orange); --accent: var(--orange); }
+.project-card.accent-slate      { --brand: #52758A; --accent: #52758A; }  /* NIRSPipe */
+.project-card.accent-sky        { --brand: #7396B2; --accent: #537998; }  /* fNIRS Methods Review */
+.project-card.accent-terracotta { --brand: #B66D52; --accent: #aa6248; }  /* Sync-A-Thon */
+.project-card.accent-violet     { --brand: #8A78A3; --accent: #806c9b; }  /* Sync & Switch */
+.project-card.accent-sage       { --brand: #738C76; --accent: #657a67; }  /* Neighborhood, Brain, and Health */
+.project-card.accent-rose       { --brand: #B46465; --accent: #b05c5e; }  /* AI-Human Interaction Review */
+
+[data-theme="dark"] .project-card.accent-slate      { --accent: #6b91a7; }
+[data-theme="dark"] .project-card.accent-sky        { --accent: #7396B2; }
+[data-theme="dark"] .project-card.accent-terracotta { --accent: #bd7c63; }
+[data-theme="dark"] .project-card.accent-violet     { --accent: #9585ac; }
+[data-theme="dark"] .project-card.accent-sage       { --accent: #7a927d; }
+[data-theme="dark"] .project-card.accent-rose       { --accent: #be7979; }
+
+.project-card.has-accent { border-left-color: var(--brand); }
+/* Lora's true bold italic is loaded in the layout, so this is a real
+   italic cut rather than a browser-slanted upright. */
+.project-card.has-accent h3 {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.015em;
+}
+
+/* Text column + optional picture beside it */
+.project-main { display: flex; gap: 2rem; align-items: flex-start; }
+.project-text { flex: 1 1 auto; min-width: 0; }
+.project-media {
+  flex: 0 0 128px;
+  width: 128px;
+  margin: 0.2rem 0 0;
+}
+.project-media--wide {
+  flex-basis: 250px;
+  width: 250px;
+}
+.project-media img { display: block; width: 100%; height: auto; }
+.project-media a { display: block; }
+/* A QR code has to stay on white to scan, in either theme. */
+.project-media--qr img {
+  background: #fff;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(12, 35, 64, 0.14);
+  box-sizing: border-box;
+}
+.project-media--cover img {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(12, 35, 64, 0.16);
+}
+.project-media--wide img {
+  border-radius: 8px;
+  border: 1px solid rgba(12, 35, 64, 0.14);
+  background: #fff;
+}
+.project-media figcaption {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--slate);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+/* Source credit under a figure — its own line, wrapping on the slashes
+   rather than overflowing the narrow media column. */
+.figcaption-link {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--accent, var(--terra));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.figcaption-link:hover { text-decoration-thickness: 2px; }
+
+/* Study / partner logos: white chips so they read in dark mode too */
+.project-logos { margin-top: 1.2rem; }
+.project-logos-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 0 0 0.55rem;
+}
+.project-logo-row { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+.project-logo {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(12, 35, 64, 0.14);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+}
+.project-logo img { display: block; height: 60px; width: auto; }
+a.project-logo { transition: border-color 0.15s, box-shadow 0.15s; }
+a.project-logo:hover,
+a.project-logo:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(12, 35, 64, 0.18);
+}
+
+@media (max-width: 700px) {
+  .project-main { flex-direction: column; gap: 1.2rem; }
+  .project-media { flex: none; width: 132px; align-self: flex-start; }
+  .project-media--wide { width: 100%; max-width: 320px; }
+  .project-logo img { height: 46px; }
+}

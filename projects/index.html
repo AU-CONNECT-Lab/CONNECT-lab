@@ -13,17 +13,17 @@ title: Projects
 {% assign live = site.projects
    | where_exp: "p", "p.draft != true"
    | where_exp: "p", "p.title != 'Full Project Title'" %}
-{% assign methods      = live | where: "category", "Methodological development" | sort: "order" %}
-{% assign naturalistic = live | where: "category", "Naturalistic interactions"   | sort: "order" %}
+{% assign methods      = live | where: "category", "Methodological Development" | sort: "order" %}
+{% assign naturalistic = live | where: "category", "Naturalistic Interactions"   | sort: "order" %}
 {% assign secondary    = live | where: "category", "Secondary Data Analysis"     | sort: "order" %}
 
 <div class="section">
   <div class="divider"></div>
   <p class="section-eyebrow">Research</p>
   <h2 class="section-title">Ongoing Lab Projects</h2>
-  <p class="section-intro">Our research asks how the social worlds adolescents inhabit — families, neighborhoods, peer networks — shape the developing brain and body, and builds the methods needed to study them.</p>
+  <p class="section-intro">Our research examines how the social worlds adolescents navigate, including their families, neighborhoods, and peer networks, shape the developing brain and body. We also develop the methods needed to study these complex relationships.</p>
 
-  {% include project-group.html heading="Methodological development" group=methods %}
-  {% include project-group.html heading="Naturalistic interactions"   group=naturalistic %}
+  {% include project-group.html heading="Methodological Development" group=methods %}
+  {% include project-group.html heading="Naturalistic Interactions"   group=naturalistic %}
   {% include project-group.html heading="Secondary Data Analysis"     group=secondary %}
 </div>
