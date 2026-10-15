@@ -8,6 +8,10 @@ short_title: Neighborhood & Brain          # used in nav/cards
 status: active                             # active | developing | completed
 order: 1
 
+# Not part of the current project list, so hidden from the site.
+# Remove this line to show it again, or delete the file.
+draft: true
+
 tags:
   - fNIRS
   - neighborhood

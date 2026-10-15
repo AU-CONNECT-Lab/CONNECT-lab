@@ -1,0 +1,8 @@
+{% comment %}
+  A category heading plus its projects. Parameters: heading, group
+  Prints nothing when the group is empty.
+{% endcomment %}
+{% if include.group.size > 0 %}
+  <h3 class="project-cat">{{ include.heading }}</h3>
+  {% for project in include.group %}{% include project-card.html project=project %}{% endfor %}
+{% endif %}

@@ -1,0 +1,32 @@
+{% comment %}
+  One project card. Parameter: project
+{% endcomment %}
+{% assign pr = include.project %}
+<div class="project-card">
+  <h3>
+    {{ pr.title }}
+    {% if pr.status and pr.status != '' %}<span class="status-badge{% if pr.status contains 'Active' %} active{% endif %}">{{ pr.status }}</span>{% endif %}
+  </h3>
+  {% if pr.subtitle and pr.subtitle != '' %}<p class="project-subtitle">{{ pr.subtitle }}</p>{% endif %}
+  {% if pr.tags and pr.tags.size > 0 %}
+  <div class="project-tags">
+    {% for tag in pr.tags %}
+      {% if tag == 'fNIRS' or tag == 'hyperscanning' %}
+        <span class="tag tag-fnirs">{{ tag }}</span>
+      {% elsif tag == 'neighborhood' or tag == 'context' or tag == 'family' %}
+        <span class="tag tag-context">{{ tag }}</span>
+      {% elsif tag == 'adolescence' or tag == 'teen' or tag == 'EMA' %}
+        <span class="tag tag-teen">{{ tag }}</span>
+      {% else %}
+        <span class="tag tag-method">{{ tag }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="project-body">{{ pr.content | markdownify }}</div>
+  {% if pr.links and pr.links.size > 0 %}
+  <div class="project-links">
+    {% for l in pr.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}
+  </div>
+  {% endif %}
+</div>

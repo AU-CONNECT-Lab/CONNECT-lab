@@ -1062,3 +1062,35 @@ body { background: var(--cream); color: var(--text); }
 .footer-links a { color: var(--orange-lt); }
 /* The personal paragraph sits a little apart from the research bio */
 .bio-personal { border-top: 1px solid var(--peach); padding-top: 0.7rem; }
+
+/* ── Projects page ────────────────────────────────────────────── */
+.project-cat {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--peach);
+}
+.project-cat:first-of-type { margin-top: 1.5rem; }
+.project-subtitle {
+  font-size: 0.9rem;
+  color: var(--slate);
+  font-style: italic;
+  line-height: 1.6;
+  margin: -0.25rem 0 0.7rem;
+}
+.project-tags { margin-bottom: 0.5rem; }
+.project-card h3 .status-badge { vertical-align: middle; }
+.project-links { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.9rem; }
+.project-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--terra);
+  border: 1px solid var(--peach);
+  padding: 0.25rem 0.7rem;
+  border-radius: 4px;
+}
+.project-links a:hover { border-color: var(--orange); text-decoration: none; }
