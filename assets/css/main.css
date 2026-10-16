@@ -393,13 +393,24 @@ main { padding-top: var(--nav-h); }
   padding: 1.25rem 1.75rem;
   display: flex; align-items: center; gap: 1.25rem;
 }
+/* A monogram of the person's initials, not an emoji — it scales with
+   the text, reads the same on every platform, and looks deliberate. */
 .collaborator-icon {
-  width: 44px; height: 44px; border-radius: 50%;
+  width: 46px; height: 46px; border-radius: 50%;
   background: var(--ivory);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
+  flex-shrink: 0;
   border: 1px solid var(--peach);
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--text);
 }
+.collaborator-card:hover .collaborator-icon {
+  border-color: var(--orange);
+  color: var(--orange-txt);
+}
+[data-theme="dark"] .collaborator-card:hover .collaborator-icon { color: var(--orange-lt); }
 .collaborator-info h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--ink); margin-bottom: 0.15rem; }
 .collaborator-info p { font-size: 0.875rem; color: var(--slate); }
 

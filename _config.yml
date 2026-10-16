@@ -19,6 +19,13 @@ lab:
   github: "https://github.com/AU-CONNECT-Lab"
   lab_phone: ""        # optional
 
+# Visitor analytics — GoatCounter (https://www.goatcounter.com)
+# Privacy-friendly: no cookies, no personal data, nothing visitors must consent to.
+# Put the site code you pick when signing up in the quotes below.
+# Leave it empty ("") to switch visitor counting off everywhere.
+analytics:
+  goatcounter: "au-connect-lab"
+
 # Jekyll settings
 theme: null
 markdown: kramdown

@@ -1,0 +1,20 @@
+{% comment %}
+  Visitor counting via GoatCounter — https://www.goatcounter.com
+
+  Privacy-friendly by design: no cookies are set, no personal data is
+  stored, and nothing here requires a consent banner.
+
+  Controlled from one line in _config.yml:
+
+      analytics:
+        goatcounter: "au-connect-lab"
+
+  Blank that value out and this file renders nothing, so counting stops
+  site-wide without touching any other page. The GoatCounter script also
+  ignores localhost on its own, so pages previewed on your own computer
+  are never counted.
+{% endcomment %}
+{% if site.analytics.goatcounter and site.analytics.goatcounter != "" %}
+<script data-goatcounter="https://{{ site.analytics.goatcounter }}.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+{% endif %}
