@@ -8,6 +8,11 @@ layout: default
   <p class="section-eyebrow">{{ page.category }}</p>
   <h1 class="section-title">{{ page.title }}</h1>
   <p style="font-size:0.875rem;color:var(--taupe);margin-bottom:2rem;">{{ page.date | date: "%B %-d, %Y" }}{% if page.author %} · {{ page.author }}{% endif %}</p>
+  {% if page.image and page.image != '' %}
+  <figure class="update-figure">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">
+  </figure>
+  {% endif %}
   <div style="font-size:0.975rem;color:var(--slate);line-height:1.85;">
     {{ content }}
   </div>

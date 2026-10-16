@@ -861,6 +861,38 @@ body { background: var(--cream); color: var(--text); }
   height: auto;
 }
 
+/* ── PI card: fixed photo, text fills the rest ────────────────
+   The photo is 400px square at every screen width and in both
+   layouts — it never resizes. Below 1024px the card is stacked
+   exactly like any other member's. At 1024px and up the card
+   spans the full content width and the bio takes ALL the
+   remaining space beside the photo, with no cap, so the intro
+   fills the row instead of stopping short.                     */
+@media (min-width: 1024px) {
+  .team-card.pi {
+    max-width: none;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .team-card.pi .team-photo {
+    flex: 0 0 400px;
+    width: 400px;
+    aspect-ratio: 1;
+    height: auto;
+    border-bottom: 0;
+  }
+  .team-card.pi .team-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 1.75rem 2rem;
+    /* Divider on the text column, not the photo, so it runs the
+       full height of the card rather than stopping at the photo. */
+    border-left: 1px solid var(--peach);
+  }
+  .team-card.pi .team-info h3 { font-size: 1.25rem; }
+  .team-card.pi .team-role { font-size: 0.875rem; }
+}
+
 /* ── WHAT IS fNIRS page ───────────────────────────────────────── */
 .fnirs-h3 {
   font-family: var(--font-serif);
@@ -886,7 +918,10 @@ body { background: var(--cream); color: var(--text); }
 }
 .fnirs-cite {
   font-size: 0.8rem;
-  color: var(--taupe);
+  /* --taupe is tuned for white; on the tinted section-alt panel it
+     falls to 4.4:1, so this is a shade darker. Dark mode keeps the
+     token, which already clears the bar there. */
+  color: #64707f;
   line-height: 1.7;
   max-width: 68ch;
 }
@@ -1060,8 +1095,139 @@ body { background: var(--cream); color: var(--text); }
 }
 .footer-links { margin-top: 0.6rem; font-size: 0.82rem; }
 .footer-links a { color: var(--orange-lt); }
+
 /* The personal paragraph sits a little apart from the research bio */
 .bio-personal { border-top: 1px solid var(--peach); padding-top: 0.7rem; }
+
+/* The lab's name picked out of the heading. --orange-txt is tuned
+   for light backgrounds; the dark panel gets the lighter orange. */
+.word-connect { color: var(--orange-txt); font-weight: 800; }
+/* Headings resolve to Inter: the theme layer remaps --font-serif to it.
+   Italic is requested in the layout's font URL; if Google has no italic
+   cut for Inter the browser slants the upright instead. */
+.section-title--italic { font-style: italic; }
+[data-theme="dark"] .word-connect { color: var(--orange-lt); }
+
+/* ── "CONNECT Is More Than Our Name" ─────────────────────────
+   Four parallel statements, two per row on desktop, stacked on
+   a phone. Each lead-in carries the lab's orange so the
+   repeated "... connect." reads as the pattern it is.          */
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem 2.5rem;
+  margin-top: 0.5rem;
+}
+.connect-item h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--orange-txt);
+  margin-bottom: 0.4rem;
+}
+.connect-item p {
+  font-size: 0.925rem;
+  color: var(--slate);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 52ch;
+}
+/* --orange-txt is tuned for white; on the dark ivory panel it drops
+   to 3.3:1, so the lead-ins switch to the lighter orange there. */
+[data-theme="dark"] .connect-item h3 { color: var(--orange-lt); }
+@media (max-width: 760px) {
+  .connect-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ── Hero tagline and backdrop ───────────────────────────────
+   Two-line tagline with the second line italic in pale sage, a
+   smaller supporting line under it, and the sweeping lines on the
+   right. Typeface is untouched — this is size, colour and layout
+   only.                                                          */
+.hero { position: relative; overflow: hidden; }
+.hero-inner { position: relative; z-index: 1; }
+.hero-deco {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(52%, 640px);
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 900px) {
+  .hero-deco { display: none; }
+}
+
+/* ── Hero is a single column now that the three pillars are gone ──
+   .hero-inner is a 1fr 1fr grid, which would strand the text in the
+   left half with an empty right half.                              */
+.hero-inner { grid-template-columns: 1fr; gap: 0; }
+.hero-text { max-width: 46rem; }
+
+/* The eyebrow uses --terra, which is tuned for white backgrounds and
+   reads at only 3.1:1 on the navy hero. Lighten it just there.      */
+.hero .section-eyebrow { color: var(--orange-lt); }
+
+[data-theme="dark"] .fnirs-cite { color: var(--taupe); }
+
+/* ── Homepage About lede ─────────────────────────────────────
+   Single column now that the three cards have been removed.
+   Capped at a readable measure rather than running the full
+   width of the page.                                           */
+.home-lede { max-width: 68ch; }
+.home-lede p {
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Lab update photos ───────────────────────────────────────
+   On the list, a thumbnail sits beside the text and links to the
+   post. Images keep their own proportions rather than being
+   cropped to a common box, so a portrait poster shot and a
+   landscape slide both stay whole.                              */
+.update-body.has-media {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.update-text { flex: 1 1 auto; min-width: 0; }
+.update-media {
+  flex: 0 0 190px;
+  width: 190px;
+  display: block;
+}
+.update-media img {
+  display: block;
+  max-width: 100%;
+  max-height: 260px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: 1px solid var(--peach);
+}
+.update-media:hover img { border-color: var(--orange); }
+
+/* The full picture on the post's own page */
+.update-figure { margin: 0 0 1.9rem; }
+.update-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 540px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--peach);
+}
+
+@media (max-width: 640px) {
+  .update-body.has-media { flex-direction: column; gap: 1.1rem; }
+  .update-media { flex: none; width: 100%; }
+  .update-media img { max-height: 300px; }
+}
 
 /* ── Projects page ────────────────────────────────────────────── */
 .project-cat {
@@ -1110,7 +1276,7 @@ body { background: var(--cream); color: var(--text); }
 /* Per-project accent: titles and the left stripe.
    Each color has a light-mode and a dark-mode value so the text stays
    legible on both the white card and the dark one. */
-/* ── CONNECT Lab project palette ──────────────────────────
+/* ── CONNECT Lab project palette ──────────────────────────────
    --brand  is the palette color exactly as specified; it paints the
             card's left stripe, where there is no legibility concern.
    --accent is the same color nudged just far enough to stay readable
@@ -1132,8 +1298,14 @@ body { background: var(--cream); color: var(--text); }
 [data-theme="dark"] .project-card.accent-rose       { --accent: #be7979; }
 
 .project-card.has-accent { border-left-color: var(--brand); }
-/* Lora's true bold italic is loaded in the layout, so this is a real
-   italic cut rather than a browser-slanted upright. */
+/* Hovering a project lights the whole frame in that project's own
+   colour, matching its left bar, instead of the generic orange the
+   other card types use. --brand falls back to orange for a card
+   with no accent, so uncoloured projects behave as before. */
+.project-card:hover { border-color: var(--brand); }
+/* Headings resolve to Inter: the theme layer remaps --font-serif to it.
+   Italic is requested in the layout's font URL; if Google has no italic
+   cut for Inter the browser slants the upright instead. */
 .project-card.has-accent h3 {
   color: var(--accent);
   font-style: italic;

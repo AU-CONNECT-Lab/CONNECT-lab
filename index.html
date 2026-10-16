@@ -16,105 +16,94 @@ title: Home
 
 <!-- HERO -->
 <section class="hero">
+  <svg class="hero-deco" viewBox="0 0 600 440" fill="none" aria-hidden="true" focusable="false" preserveAspectRatio="xMaxYMid slice">
+    <path d="M620 10 C 430 70, 300 190, 236 440" stroke="rgba(255,255,255,0.22)" stroke-width="1.1"/>
+    <path d="M620 95 C 455 150, 340 250, 296 440" stroke="rgba(255,255,255,0.16)" stroke-width="1.1"/>
+    <path d="M620 200 C 505 235, 424 310, 398 440" stroke="rgba(255,255,255,0.11)" stroke-width="1.1"/>
+    <circle cx="352" cy="176" r="5" fill="#e87722" opacity="0.85"/>
+    <circle cx="420" cy="285" r="5" fill="#b6d7c7" opacity="0.7"/>
+  </svg>
   <div class="hero-inner">
     <div class="hero-text">
       <p class="section-eyebrow">Auburn University · HDFS</p>
-      <h1>Understanding People.<br><em>Strengthening Connections.</em><br>Supporting Growth.</h1>
+      <h1>Exploring Social Worlds.<br><em>Understanding Connections.</em><br>Advancing Developmental Science.</h1>
       <p class="hero-lead">
-        Welcome to CONNECT Lab! The <strong>CON</strong>text and <strong>NE</strong>urophysiological
-        <strong>C</strong>orrelates of <strong>T</strong>een <strong>D</strong>evelopment Lab is led by
-        {{ site.lab.pi_name }}, {{ site.lab.pi_title }} at {{ site.lab.university }}.
+        Welcome to CONNECT Lab! Led by {{ site.lab.pi_name }} at {{ site.lab.university }},
+        we study how adolescents' social worlds shape the developing brain and body.
       </p>
       <div class="hero-btns">
         <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">Our Research</a>
         <a href="{{ site.baseurl }}/contact/" class="btn btn-outline">Join the Lab</a>
       </div>
     </div>
-    <div class="hero-pillars">
-      <div class="pillar">
-        <div class="pillar-icon" style="background: var(--apricot);">🌍</div>
-        <div>
-          <h3>Context</h3>
-          <p>We examine the environments — from neighborhoods to families — that shape adolescent development and well-being.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon" style="background: var(--slate); color: white;">🧠</div>
-        <div>
-          <h3>Connection</h3>
-          <p>We explore how social relationships "get under the skin and skull," linking everyday interactions to neurophysiological outcomes.</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon" style="background: var(--sage);">🌱</div>
-        <div>
-          <h3>Growth</h3>
-          <p>We support thriving across the teen years by translating brain-behavior science into evidence-informed guidance.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- RECENT UPDATES (pulls from _updates, featured: true) -->
-{% assign featured_updates = site.updates | where: "featured", true | sort: "date" | reverse %}
-{% if featured_updates.size > 0 %}
-<div class="section-alt">
-  <div class="section">
-    <div class="divider"></div>
-    <p class="section-eyebrow">Latest News</p>
-    <h2 class="section-title">Lab Updates</h2>
-    <div class="card-grid">
-      {% for update in featured_updates limit: 3 %}
-      <div class="update-card">
-        <div class="update-header">
-          <span class="update-date">{{ update.date | date: "%B %Y" }}</span>
-          <span class="category-badge">{{ update.category }}</span>
-        </div>
-        <div class="update-body">
-          <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--text);text-decoration:none;">{{ update.title }}</a></h3>
-          <p>{{ update.content | strip_html | truncatewords: 30 }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <p style="margin-top:1.5rem;"><a href="{{ site.baseurl }}/updates/" class="btn btn-outline">All Updates</a></p>
-  </div>
-</div>
-{% endif %}
-
-<!-- ABOUT -->
+<!-- ABOUT THE LAB -->
 <div class="section">
   <div class="divider"></div>
   <p class="section-eyebrow">About the Lab</p>
-  <h2 class="section-title">Where brain, behavior,<br>and environment meet</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
-    <div>
-      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.25rem;">
-        CONNECT Lab studies how the environments adolescents grow up in — their neighborhoods, families,
-        and everyday relationships — shape the developing brain and body. We use neurophysiological
-        methods, including functional near-infrared spectroscopy (fNIRS), to capture how social experiences
-        translate into biological change during the critical window of adolescence.
-      </p>
-      <p style="color:var(--slate);line-height:1.8;margin-bottom:1.5rem;">
-        Our work sits at the intersection of developmental science, neuroscience, and family studies —
-        asking not just <em>what</em> teens experience, but <em>how</em> those experiences get inside them.
-      </p>
-      <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">Explore Our Research</a>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:1.25rem;">
-      <div class="card">
-        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">📍 Where We Are</h3>
-        <p style="font-size:0.9rem;color:var(--slate);">{{ site.lab.department }}, {{ site.lab.college }}, {{ site.lab.university }}, Auburn, Alabama.</p>
+  <h2 class="section-title">Where Brain, Behavior, and Environment Meet</h2>
+  <div class="home-lede">
+    <p>
+      Our research examines how adolescents' everyday relationships and broader social environments
+      shape brain and body development. By combining neuroimaging (fMRI, fNIRS), physiological
+      measures (ECG, EDA), behavioral observations, and computational approaches, we seek to
+      understand how young people interact with their social worlds. We also develop research
+      methods to better capture these complex relationships.
+    </p>
+    <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">Explore Our Research <span aria-hidden="true">→</span></a>
+  </div>
+</div>
+
+<!-- OUR PHILOSOPHY -->
+<div class="section-alt">
+  <div class="section">
+    <div class="divider"></div>
+    <p class="section-eyebrow">Our Philosophy</p>
+    <h2 class="section-title section-title--italic"><span class="word-connect">CONNECT</span> Is More Than Our Name.</h2>
+    <div class="connect-grid">
+      <div class="connect-item">
+        <h3>People connect.</h3>
+        <p>Adolescents' relationships with family, friends, and others play an important role in shaping their development.</p>
       </div>
-      <div class="card">
-        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">🔬 How We Measure</h3>
-        <p style="font-size:0.9rem;color:var(--slate);">fNIRS, physiological sensors, ecological momentary assessment (EMA), and observational methods — capturing real-time brain and body responses in adolescents.</p>
+      <div class="connect-item">
+        <h3>Contexts connect.</h3>
+        <p>Families, peer networks, neighborhoods, and broader social environments intersect and jointly shape young people's experiences.</p>
       </div>
-      <div class="card">
-        <h3 style="font-family:var(--font-serif);font-size:1rem;margin-bottom:0.5rem;">🤝 Who We Study</h3>
-        <p style="font-size:0.9rem;color:var(--slate);">Adolescents and their families, particularly teens navigating social contexts across diverse backgrounds.</p>
+      <div class="connect-item">
+        <h3>Methods connect.</h3>
+        <p>Bringing together different research approaches allows us to ask questions that no single method can answer alone.</p>
+      </div>
+      <div class="connect-item">
+        <h3>We connect.</h3>
+        <p>We welcome students and fellow researchers who share our curiosity about how social experiences shape the developing brain and body.</p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- LATEST NEWS (pulls from _updates, featured: true) -->
+{% assign featured_updates = site.updates | where: "featured", true | sort: "date" | reverse %}
+{% if featured_updates.size > 0 %}
+<div class="section">
+  <div class="divider"></div>
+  <p class="section-eyebrow">Latest News</p>
+  <h2 class="section-title">Lab Updates</h2>
+  <div class="card-grid">
+    {% for update in featured_updates limit: 3 %}
+    <div class="update-card">
+      <div class="update-header">
+        <span class="update-date">{{ update.date | date: "%B %Y" }}</span>
+        <span class="category-badge">{{ update.category }}</span>
+      </div>
+      <div class="update-body">
+        <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--text);text-decoration:none;">{{ update.title }}</a></h3>
+        <p>{{ update.content | markdownify | strip_html | truncatewords: 30 }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p style="margin-top:1.5rem;"><a href="{{ site.baseurl }}/updates/" class="btn btn-outline">View All Updates <span aria-hidden="true">→</span></a></p>
+</div>
+{% endif %}

@@ -7,20 +7,35 @@ title: Lab Updates
   <div class="divider"></div>
   <p class="section-eyebrow">News</p>
   <h2 class="section-title">Lab Updates</h2>
-  <p class="section-intro">Milestones, publications, conference presentations, and opportunities as CONNECT Lab grows.</p>
 
   {% assign updates = site.updates | sort: "date" | reverse %}
   {% for update in updates %}
-  {% unless update.title contains 'TEMPLATE' %}
+  {% unless update.path contains 'TEMPLATE' %}
   <div class="update-card">
     <div class="update-header">
       <span class="update-date">{{ update.date | date: "%B %-d, %Y" }}</span>
       <span class="category-badge">{{ update.category }}</span>
     </div>
-    <div class="update-body">
+    <div class="update-body{% if update.image and update.image != '' %} has-media{% endif %}">
+      <div class="update-text">
       <h3><a href="{{ update.url | prepend: site.baseurl }}" style="color:var(--text);text-decoration:none;">{{ update.title }}</a></h3>
-      {{ update.content | markdownify | truncatewords: 60 }}
-      <p style="margin-top:0.75rem;"><a href="{{ update.url | prepend: site.baseurl }}" style="font-size:0.85rem;color:var(--terra);">Read more →</a></p>
+      {% comment %}
+        Most updates are a sentence or two, so only truncate (and only
+        offer "Read more") when there is actually more to read.
+      {% endcomment %}
+      {% assign word_count = update.content | strip_html | number_of_words %}
+      {% if word_count > 60 %}
+        {{ update.content | markdownify | truncatewords: 60 }}
+        <p style="margin-top:0.75rem;"><a href="{{ update.url | prepend: site.baseurl }}" style="font-size:0.85rem;color:var(--terra);">Read more →</a></p>
+      {% else %}
+        {{ update.content | markdownify }}
+      {% endif %}
+      </div>
+      {% if update.image and update.image != '' %}
+      <a class="update-media" href="{{ update.url | prepend: site.baseurl }}">
+        <img src="{{ update.image | relative_url }}" alt="{{ update.image_alt | default: update.title }}" loading="lazy">
+      </a>
+      {% endif %}
     </div>
   </div>
   {% endunless %}
