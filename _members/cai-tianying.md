@@ -5,7 +5,7 @@ title: Assistant Professor of Human Development and Family Science
 photo: /assets/images/team/cai-tianying.jpg
 email: tic0006@auburn.edu
 website: https://humsci.auburn.edu/directory/profile.php?id=tic0006
-google_scholar: ""
+google_scholar: "https://scholar.google.com/citations?user=UiL-bLoAAAAJ"
 cv: ""
 pronouns: ""
 order: 1

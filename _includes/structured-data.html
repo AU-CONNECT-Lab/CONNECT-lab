@@ -1,0 +1,110 @@
+{% comment %}
+  ───────────────────────────────────────────────────────────────────────────
+  HIDDEN IDENTITY CARD (schema.org JSON-LD)
+
+  Nothing here is shown to visitors. It is a machine-readable summary that
+  tells Google, Bing and tools like ChatGPT search three things:
+
+    1. CONNECT Lab is a research lab at Auburn University.
+    2. Tianying Cai is a real person who directs it.
+    3. The Tianying Cai on this site is the SAME person as the one on Google
+       Scholar, LinkedIn and the Auburn faculty directory (the "sameAs" list).
+
+  That third point is what lets a search engine treat scattered mentions as
+  one identity, which is how a name search starts returning this site.
+
+  Everything is read from `lab:` in _config.yml — add an ORCID there and it
+  appears here automatically. There is nothing to edit in this file.
+  ───────────────────────────────────────────────────────────────────────────
+{% endcomment %}
+{%- comment -%}
+  Build the two "same person / same lab elsewhere" lists. Written with
+  append + split rather than Liquid's `push`, which Jekyll 4's Liquid
+  does not provide; `jsonify` then renders them as valid JSON arrays.
+{%- endcomment -%}
+{%- assign lab_raw = "" -%}
+{%- if site.lab.github and site.lab.github != "" %}{% assign lab_raw = lab_raw | append: site.lab.github | append: "|" %}{% endif -%}
+{%- if site.lab.instagram and site.lab.instagram != "" %}{% assign lab_raw = lab_raw | append: site.lab.instagram | append: "|" %}{% endif -%}
+{%- assign lab_links = lab_raw | split: "|" -%}
+{%- assign pi_raw = "" -%}
+{%- if site.lab.google_scholar and site.lab.google_scholar != "" %}{% assign pi_raw = pi_raw | append: site.lab.google_scholar | append: "|" %}{% endif -%}
+{%- if site.lab.auburn_profile and site.lab.auburn_profile != "" %}{% assign pi_raw = pi_raw | append: site.lab.auburn_profile | append: "|" %}{% endif -%}
+{%- if site.lab.linkedin and site.lab.linkedin != "" %}{% assign pi_raw = pi_raw | append: site.lab.linkedin | append: "|" %}{% endif -%}
+{%- if site.lab.orcid and site.lab.orcid != "" %}{% assign pi_raw = pi_raw | append: site.lab.orcid | append: "|" %}{% endif -%}
+{%- assign pi_links = pi_raw | split: "|" -%}
+{%- capture person_url %}{{ '/team/' | absolute_url }}{% endcapture -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ResearchOrganization",
+      "@id": "{{ '/' | absolute_url }}#lab",
+      "name": "{{ site.title }}",
+      "alternateName": "CONtext and NEurophysiological Correlates of Teen Development",
+      "url": "{{ '/' | absolute_url }}",
+      "description": {{ site.description | strip_newlines | strip | jsonify }},
+      "image": "{{ site.image | absolute_url }}",
+      "email": "{{ site.lab.lab_email }}",
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "{{ site.lab.university }}",
+        "url": "https://www.auburn.edu/"
+      },
+      "department": {
+        "@type": "Organization",
+        "name": "{{ site.lab.department }}"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "{{ site.lab.room }}, {{ site.lab.university }}",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Auburn",
+          "addressRegion": "AL",
+          "addressCountry": "US"
+        }
+      },
+      "founder": { "@id": "{{ '/' | absolute_url }}#pi" },
+      "employee": { "@id": "{{ '/' | absolute_url }}#pi" },
+      "sameAs": {{ lab_links | jsonify }}
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ '/' | absolute_url }}#pi",
+      "name": "Tianying Cai",
+      "alternateName": ["Dr. Tianying Cai", "T'ien-Ying Ts'ai", "Cai, Tianying"],
+      "givenName": "Tianying",
+      "familyName": "Cai",
+      "jobTitle": "{{ site.lab.pi_title }}",
+      "email": "{{ site.lab.pi_email }}",
+      "url": "{{ person_url }}",
+      "mainEntityOfPage": "{{ person_url }}",
+      "image": "{{ '/assets/images/team/cai-tianying.jpg' | absolute_url }}",
+      "description": "Assistant Professor of Human Development and Family Science at Auburn University and director of CONNECT Lab, studying how adolescents' social environments shape the developing brain and body.",
+      "knowsAbout": [
+        "Adolescent development",
+        "fNIRS hyperscanning",
+        "Inter-brain synchrony",
+        "Developmental cognitive neuroscience",
+        "Psychophysiology",
+        "Family and neighborhood context"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "{{ site.lab.university }}",
+        "url": "https://www.auburn.edu/"
+      },
+      "worksFor": { "@id": "{{ '/' | absolute_url }}#lab" },
+      "sameAs": {{ pi_links | jsonify }}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ '/' | absolute_url }}#website",
+      "name": "{{ site.title }}",
+      "url": "{{ '/' | absolute_url }}",
+      "publisher": { "@id": "{{ '/' | absolute_url }}#lab" }
+    }
+  ]
+}
+</script>

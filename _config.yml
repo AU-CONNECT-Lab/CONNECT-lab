@@ -1,7 +1,21 @@
 title: CONNECT Lab
-description: CONtext and NEurophysiological Correlates of Teen Development
-url: "https://YOUR-GITHUB-USERNAME.github.io"   # TODO: replace with your real GitHub Pages URL
-baseurl: "/connect-lab"
+# This description is NOT shown on any page — it is the text Google prints
+# under the link in search results, and the blurb shown when someone pastes
+# the site into Slack, iMessage or Instagram. Individual pages can override
+# it with a `description:` line in their front matter.
+description: >-
+  CONNECT Lab at Auburn University, directed by Dr. Tianying Cai, studies how
+  adolescents' social worlds shape the developing brain and body using fNIRS
+  hyperscanning, physiological measures, and neuroimaging.
+
+# The real, live address of this site. Jekyll uses it to build the canonical
+# link and the share-preview tags, so a wrong value here tells Google the page
+# really lives somewhere else. Do not leave a placeholder in these two lines.
+url: "https://au-connect-lab.github.io"
+baseurl: "/CONNECT-lab"     # must match the GitHub repo name exactly, including capitals
+
+# Preview picture used when the site is shared on social media or in chat apps.
+image: /assets/images/lab-photo-formal.jpg
 
 # Lab info (edit these)
 lab:
@@ -13,11 +27,19 @@ lab:
   room: 215 M. W. Smith Hall
   department: Department of Human Development and Family Science
   college: College of Human Sciences
-  google_scholar: ""   # paste your Google Scholar URL here
+  google_scholar: "https://scholar.google.com/citations?user=UiL-bLoAAAAJ"
   twitter: ""          # optional
   instagram: "https://www.instagram.com/au_connect_lab/"
   github: "https://github.com/AU-CONNECT-Lab"
   lab_phone: ""        # optional
+  # Other places the same person appears online. These are not displayed on
+  # the site; they are listed in the hidden identity card (see
+  # _includes/structured-data.html) that tells search engines the Tianying Cai
+  # on this site, on Google Scholar, on LinkedIn and in the Auburn directory
+  # are all one person. Add an ORCID here when you have one.
+  linkedin: "https://www.linkedin.com/in/tianying-cai-45ab64127"
+  auburn_profile: "https://humsci.auburn.edu/directory/profile.php?id=tic0006"
+  orcid: ""
 
 # Visitor analytics — GoatCounter (https://www.goatcounter.com)
 # Privacy-friendly: no cookies, no personal data, nothing visitors must consent to.
@@ -71,3 +93,4 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap     # builds /sitemap.xml so search engines can find every page

@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "jekyll", "~> 4.3"
 gem "jekyll-feed"
 gem "jekyll-seo-tag"
+gem "jekyll-sitemap"
 
 # Windows/JRuby compatibility
 platforms :mingw, :x64_mingw, :mswin, :jruby do
